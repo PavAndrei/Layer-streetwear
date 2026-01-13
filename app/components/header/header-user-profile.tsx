@@ -6,7 +6,7 @@ export const HeaderUserProfile = () => {
   return (
     <div className="flex gap-2 cursor-pointer hover:opacity-70 transition-opacity duration-200 ease-in">
       <Image
-        src={avatar}
+        src="/avatar-1.jpg"
         width={30}
         height={30}
         alt="avatar"
