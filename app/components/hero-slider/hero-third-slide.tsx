@@ -4,7 +4,7 @@ import Image from 'next/image';
 export const HeroThirdSlide = () => {
   return (
     <div className="relative h-95 flex items-end pb-10 pl-10">
-      <h2 className="font-bold text-neutral-50 italic text-4xl uppercase">
+      <h2 className="font-bold text-neutral-50 italic text-4xl uppercase max-w-365 px-2.5 mx-auto w-full">
         Comfort, function, and clean silhouettes.
       </h2>
       <Image
