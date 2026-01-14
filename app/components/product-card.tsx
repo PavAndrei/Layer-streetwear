@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { ProductCardProps } from '../types/product';
+import { StarRating } from './star-rating';
 
 export const ProductCard = ({
   product,
@@ -45,7 +46,9 @@ export const ProductCard = ({
         <div className="font-medium text-lg line-clamp-1">{product.title}</div>
         <div className="italic line-clamp-3">{product.description}</div>
       </div>
-      <div className="mt-auto mb-2">{product.rating}</div>
+      <div className="mt-auto mb-2">
+        {product.rating > 0 && <StarRating rating={product.rating} />}
+      </div>
 
       <button
         aria-label="add to cart"
