@@ -10,7 +10,8 @@
     "rating": 4.8,
     "categories": ["hoodies", "streetwear", "unisex"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 2,
@@ -23,7 +24,8 @@
     "rating": 4.6,
     "categories": ["tshirts", "basics", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 3,
@@ -36,7 +38,8 @@
     "rating": 4.9,
     "categories": ["jackets", "outerwear", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 4,
@@ -49,7 +52,8 @@
     "rating": 4.7,
     "categories": ["pants", "cargo", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 5,
@@ -62,7 +66,8 @@
     "rating": 4.5,
     "categories": ["sweatshirts", "basics", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 6,
@@ -75,7 +80,8 @@
     "rating": 4.4,
     "categories": ["accessories", "caps", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 7,
@@ -88,7 +94,8 @@
     "rating": 4.8,
     "categories": ["jackets", "outerwear", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 8,
@@ -101,7 +108,8 @@
     "rating": 4.6,
     "categories": ["tshirts", "longsleeve", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 9,
@@ -114,7 +122,8 @@
     "rating": 4.3,
     "categories": ["accessories", "beanies", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
   },
   {
     "_id": 10,
@@ -127,6 +136,137 @@
     "rating": 4.7,
     "categories": ["pants", "track", "streetwear"],
     "color": "",
-    "hasDiscount": true
+    "hasDiscount": true,
+    "isNew": false
+  },
+  {
+    "_id": 11,
+    "img": "/products/layer-hoodie-graphite.png",
+    "title": "Graphite Hoodie",
+    "description": "Relaxed fit hoodie in a deep graphite colorway. Soft premium cotton designed for everyday layering.",
+    "defaultPrice": 139,
+    "discountPrice": 139,
+    "rating": 4.7,
+    "categories": ["hoodies", "streetwear", "new"],
+    "color": "graphite",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 12,
+    "img": "/products/layer-tshirt-boxy.png",
+    "title": "Boxy Fit T-Shirt",
+    "description": "Boxy silhouette t-shirt crafted from heavyweight cotton with a clean minimal finish.",
+    "defaultPrice": 55,
+    "discountPrice": 55,
+    "rating": 4.6,
+    "categories": ["tshirts", "basics", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 13,
+    "img": "/products/layer-overshirt.png",
+    "title": "Utility Overshirt",
+    "description": "Structured overshirt with utility pockets and a relaxed fit. Designed for transitional seasons.",
+    "defaultPrice": 169,
+    "discountPrice": 169,
+    "rating": 4.8,
+    "categories": ["outerwear", "overshirts", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 14,
+    "img": "/products/layer-pants-relaxed.png",
+    "title": "Relaxed Fit Pants",
+    "description": "Minimal relaxed pants with straight leg cut and soft durable fabric for daily wear.",
+    "defaultPrice": 129,
+    "discountPrice": 129,
+    "rating": 4.6,
+    "categories": ["pants", "streetwear", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 15,
+    "img": "/products/layer-sweater-knit.png",
+    "title": "Minimal Knit Sweater",
+    "description": "Lightweight knit sweater with clean detailing and a modern relaxed silhouette.",
+    "defaultPrice": 119,
+    "discountPrice": 119,
+    "rating": 4.5,
+    "categories": ["sweaters", "basics", "new"],
+    "color": "grey",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 16,
+    "img": "/products/layer-cap-nylon.png",
+    "title": "Nylon Logo Cap",
+    "description": "Lightweight nylon cap with subtle branding and adjustable strap for a modern street look.",
+    "defaultPrice": 45,
+    "discountPrice": 45,
+    "rating": 4.4,
+    "categories": ["accessories", "caps", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 17,
+    "img": "/products/layer-jacket-shell.png",
+    "title": "Shell Jacket",
+    "description": "Minimal shell jacket with lightweight protection and clean technical aesthetics.",
+    "defaultPrice": 219,
+    "discountPrice": 219,
+    "rating": 4.8,
+    "categories": ["jackets", "outerwear", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 18,
+    "img": "/products/layer-longsleeve-heavy.png",
+    "title": "Heavyweight Long Sleeve",
+    "description": "Premium heavyweight long sleeve tee with relaxed fit and minimal branding.",
+    "defaultPrice": 79,
+    "discountPrice": 79,
+    "rating": 4.7,
+    "categories": ["tshirts", "longsleeve", "new"],
+    "color": "white",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 19,
+    "img": "/products/layer-beanie-ribbed.png",
+    "title": "Ribbed Beanie",
+    "description": "Ribbed knit beanie with a snug fit and clean embroidered logo.",
+    "defaultPrice": 35,
+    "discountPrice": 35,
+    "rating": 4.5,
+    "categories": ["accessories", "beanies", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
+  },
+  {
+    "_id": 20,
+    "img": "/products/layer-track-jacket.png",
+    "title": "Track Jacket",
+    "description": "Modern track jacket with a clean silhouette and lightweight fabric for everyday movement.",
+    "defaultPrice": 149,
+    "discountPrice": 149,
+    "rating": 4.7,
+    "categories": ["jackets", "track", "new"],
+    "color": "black",
+    "hasDiscount": false,
+    "isNew": true
   }
 ]

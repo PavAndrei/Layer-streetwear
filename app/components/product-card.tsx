@@ -13,13 +13,12 @@ export const ProductCard = ({
     <li
       className={`relative flex flex-col max-w-76 ${className} text-neutral-50 bg-neutral-800 p-2 rounded`}
     >
-      <div className="w-72 h-48 bg-neutral-800 flex items-center justify-center rounded mb-4">
+      <div className="w-72 h-78 max-h-88 bg-neutral-800 flex items-center justify-center rounded mb-4">
         <Image
           src={product.img}
           alt={product.title}
-          width={288}
-          height={144}
-          className="rounded"
+          fill
+          className="rounded max-w-70 max-h-78 object-cover mx-auto mt-2"
         />
       </div>
       <div className="flex items-center justify-between mb-2">
@@ -59,6 +58,12 @@ export const ProductCard = ({
       {product.discountPercent && (
         <div className="absolute top-4 left-4">
           - {product.discountPercent} %
+        </div>
+      )}
+
+      {product.isNew && (
+        <div className="absolute top-4 right-6 px-2 py-1 bg-lime-600 rounded animate-pulse">
+          New
         </div>
       )}
     </li>

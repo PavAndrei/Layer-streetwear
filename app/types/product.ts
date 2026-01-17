@@ -10,4 +10,5 @@ export interface ProductCardProps {
   categories: string[];
   discountPercent?: number;
   hasDiscount?: boolean;
+  isNew?: boolean;
 }
