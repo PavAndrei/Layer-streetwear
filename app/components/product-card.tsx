@@ -5,15 +5,17 @@ import { StarRating } from './star-rating';
 export const ProductCard = ({
   product,
   className,
+  displayDiscount = true,
 }: {
   product: ProductCardProps;
   className?: string;
+  displayDiscount?: boolean;
 }) => {
   return (
     <li
-      className={`relative flex flex-col max-w-76 ${className} text-neutral-50 bg-neutral-800 p-2 rounded`}
+      className={`relative flex flex-col bg-neutral-800 p-3 rounded text-neutral-50 ${className}`}
     >
-      <div className="w-72 h-78 max-h-88 bg-neutral-800 flex items-center justify-center rounded mb-4">
+      <div className="w-full h-78 max-h-88 bg-neutral-800 flex items-center justify-center rounded mb-4">
         <Image
           src={product.img}
           alt={product.title}
@@ -55,7 +57,7 @@ export const ProductCard = ({
       >
         Add to cart
       </button>
-      {product.discountPercent && (
+      {displayDiscount && product.discountPercent && (
         <div className="absolute top-4 left-4">
           - {product.discountPercent} %
         </div>
