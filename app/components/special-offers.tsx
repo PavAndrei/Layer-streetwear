@@ -7,9 +7,7 @@ export const SpecialOfferCard = () => {
   return (
     <div className="flex flex-col md:flex-row justify-around md:items-center w-full gap-4 md:h-75 h-full">
       <div className="flex flex-col gap-2 md:max-w-1/2 px-2.5 md:h-2/3">
-        <h2 className="text-xl md:text-2xl font-semibold">
-          Apply for our Rewards Card
-        </h2>
+        <h2 className="text-xl font-semibold">Apply for our Rewards Card</h2>
         <p className="text-neutral-300 text-sm">
           Earn reward points with every purchase and unlock access to exclusive
           offers available only to cardholders. Enjoy early access to sales,
@@ -37,9 +35,7 @@ export const SpecialOfferDiscount = () => {
   return (
     <div className="flex flex-col md:flex-row justify-around md:items-center w-full gap-4 md:h-75 h-full">
       <div className="flex flex-col gap-2 md:max-w-1/2 px-2.5 md:h-2/3">
-        <h2 className="text-xl md:text-2xl font-semibold">
-          Seasonal discounts
-        </h2>
+        <h2 className="text-xl font-semibold">Seasonal discounts</h2>
         <p className="text-neutral-300 text-sm">
           Discover a curated selection of LAYER essentials available with
           limited-time discounts. Clean silhouettes, premium materials, and

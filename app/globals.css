@@ -20,3 +20,7 @@ body {
   @apply bg-neutral-950 text-neutral-50;
   font-family: var(--font-manrope), sans-serif;
 }
+
+.no-ymaps-copyright [class*='copyrights-pane'] {
+  visibility: hidden !important;
+}
