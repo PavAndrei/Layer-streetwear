@@ -1,3 +1,4 @@
+import { Articles } from './components/articles';
 import { Discounts } from './components/discounts';
 import { HeroSlider } from './components/hero-slider/hero-slider';
 import { Maps } from './components/maps';
@@ -13,6 +14,7 @@ export default function Home() {
       <NewArrivals />
       <Purchases />
       <SpecialOffers />
+      <Articles />
       <Maps />
     </main>
   );

@@ -1,0 +1,74 @@
+{
+  "articles": [
+    {
+      "_id": "1",
+      "img": "/images/articles/streetwear-history.jpg",
+      "title": "The Roots of Streetwear: From Streets to Runways",
+      "text": "Streetwear started as a form of self-expression rooted in skate, hip-hop, and surf culture. Over the years, it evolved from underground movements into a global fashion phenomenon embraced by luxury brands and designers worldwide.",
+      "createdAt": "2024-11-12T10:15:00.000Z"
+    },
+    {
+      "_id": "2",
+      "img": "/images/articles/oversize-style.jpg",
+      "title": "Why Oversized Fits Dominate Modern Street Fashion",
+      "text": "Oversized silhouettes have become a defining element of streetwear. Comfort, freedom of movement, and a rebellious attitude towards classic tailoring made loose fits a cultural statement rather than a trend.",
+      "createdAt": "2024-11-18T14:40:00.000Z"
+    },
+    {
+      "_id": "3",
+      "img": "/images/articles/sneakers-culture.jpg",
+      "title": "Sneaker Culture: More Than Just Shoes",
+      "text": "Sneakers are the backbone of streetwear culture. Limited drops, collaborations, and resale markets turned footwear into collectibles that represent identity, status, and personal taste.",
+      "createdAt": "2024-11-25T09:05:00.000Z"
+    },
+    {
+      "_id": "4",
+      "img": "/images/articles/hoodies-essential.jpg",
+      "title": "The Hoodie: A Streetwear Essential",
+      "text": "Once considered purely functional, the hoodie has become a symbol of street culture. Its versatility allows it to adapt to different styles, from minimalistic outfits to bold layered looks.",
+      "createdAt": "2024-12-02T16:20:00.000Z"
+    },
+    {
+      "_id": "5",
+      "img": "/images/articles/graphics-identity.jpg",
+      "title": "Graphic Prints and Identity in Streetwear",
+      "text": "Graphic designs play a crucial role in streetwear. Logos, slogans, and illustrations help brands communicate values, social messages, and cultural references directly through clothing.",
+      "createdAt": "2024-12-10T11:50:00.000Z"
+    },
+    {
+      "_id": "6",
+      "img": "/images/articles/layering-guide.jpg",
+      "title": "Layering Techniques for Streetwear Outfits",
+      "text": "Layering is a key styling technique in streetwear. Combining different textures, lengths, and proportions allows wearers to create depth and individuality in everyday looks.",
+      "createdAt": "2024-12-18T13:30:00.000Z"
+    },
+    {
+      "_id": "7",
+      "img": "/images/articles/minimal-street.jpg",
+      "title": "Minimalism in Streetwear: Less Is Enough",
+      "text": "Minimal streetwear focuses on clean lines, neutral colors, and high-quality fabrics. This approach proves that street fashion doesn’t need loud graphics to make a strong statement.",
+      "createdAt": "2024-12-26T08:45:00.000Z"
+    },
+    {
+      "_id": "8",
+      "img": "/images/articles/collabs-impact.jpg",
+      "title": "How Brand Collaborations Shape Streetwear",
+      "text": "Collaborations between streetwear brands and artists or luxury houses drive innovation and hype. These limited releases often redefine the boundaries between fashion, art, and culture.",
+      "createdAt": "2025-01-05T15:10:00.000Z"
+    },
+    {
+      "_id": "9",
+      "img": "/images/articles/sustainability.jpg",
+      "title": "Sustainability in Modern Streetwear",
+      "text": "Sustainable practices are becoming more important in streetwear. Brands are experimenting with recycled materials, ethical production, and transparent supply chains to reduce environmental impact.",
+      "createdAt": "2025-01-12T12:00:00.000Z"
+    },
+    {
+      "_id": "10",
+      "img": "/images/articles/future-streetwear.jpg",
+      "title": "The Future of Streetwear Culture",
+      "text": "Streetwear continues to evolve alongside technology and social change. Digital fashion, virtual drops, and community-driven brands point towards a future where culture and innovation move together.",
+      "createdAt": "2025-01-20T18:25:00.000Z"
+    }
+  ]
+}
