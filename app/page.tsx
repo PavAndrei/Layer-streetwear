@@ -6,6 +6,8 @@ import { NewArrivals } from './components/new-arriavals';
 import { Purchases } from './components/purchases';
 import { SpecialOffers } from './components/special-offers';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <main className="w-full mx-auto mb-20 h-fit flex flex-col gap-20">

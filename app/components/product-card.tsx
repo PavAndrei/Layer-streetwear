@@ -6,10 +6,12 @@ export const ProductCard = ({
   product,
   className,
   displayDiscount = true,
+  displayNewBadge = false,
 }: {
   product: ProductCardProps;
   className?: string;
   displayDiscount?: boolean;
+  displayNewBadge?: boolean;
 }) => {
   return (
     <li
@@ -63,7 +65,7 @@ export const ProductCard = ({
         </div>
       )}
 
-      {product.isNew && (
+      {product.isNew && displayNewBadge && (
         <div className="absolute top-4 right-6 px-2 py-1 bg-lime-600 rounded animate-pulse">
           New
         </div>
