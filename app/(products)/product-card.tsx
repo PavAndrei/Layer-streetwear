@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { ProductCardProps } from '../types/product';
-import { StarRating } from './star-rating';
+import { StarRating } from '../components/star-rating';
 
 export const ProductCard = ({
   product,
   className,
   displayDiscount = true,
-  displayNewBadge = false,
+  displayNewBadge = true,
 }: {
   product: ProductCardProps;
   className?: string;
@@ -49,6 +49,7 @@ export const ProductCard = ({
         <div className="font-medium text-lg line-clamp-1">{product.title}</div>
         <div className="italic line-clamp-3">{product.description}</div>
       </div>
+
       <div className="mt-auto mb-2">
         {product.rating > 0 && <StarRating rating={product.rating} />}
       </div>
@@ -59,8 +60,13 @@ export const ProductCard = ({
       >
         Add to cart
       </button>
+
+      <div className="text-sm pt-2 text-neutral-300">
+        In Stock: {product.quantity}
+      </div>
+
       {displayDiscount && product.discountPercent && (
-        <div className="absolute top-4 left-4">
+        <div className="absolute top-4 left-4 text-neutral-800 font-medium">
           - {product.discountPercent} %
         </div>
       )}

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
-import './globals.css';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer';
+
+import './globals.css';
 
 const manrope = Manrope({
   variable: '--font-manrope',
@@ -22,9 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} font-sans`}>
+      <body
+        className={`${manrope.variable} font-sans flex flex-col min-h-screen`}
+      >
         <Header />
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,9 +1,9 @@
-import { Articles } from './components/articles';
-import { Discounts } from './components/discounts';
+import { Articles } from './(articles)/articles';
+import { Discounts } from './(products)/discounts';
+import { NewArrivals } from './(products)/new-arriavals';
+import { Purchases } from './(users)/purchases';
 import { HeroSlider } from './components/hero-slider/hero-slider';
 import { Maps } from './components/maps';
-import { NewArrivals } from './components/new-arriavals';
-import { Purchases } from './components/purchases';
 import { SpecialOffers } from './components/special-offers';
 
 export const dynamic = 'force-dynamic';

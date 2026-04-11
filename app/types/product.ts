@@ -11,4 +11,5 @@ export interface ProductCardProps {
   discountPercent?: number;
   hasDiscount?: boolean;
   isNew?: boolean;
+  quantity: number;
 }
