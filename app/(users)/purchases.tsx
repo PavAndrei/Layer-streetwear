@@ -21,6 +21,7 @@ export const Purchases = async () => {
       displayDiscount={false}
       displayNewBadge={false}
       quantity={15}
+      headingLevel="h2"
     />
   );
 };

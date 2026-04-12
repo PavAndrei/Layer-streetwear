@@ -17,6 +17,7 @@ export const Articles = async () => {
       linkTo="/articles"
       quantity={15}
       articles={articles}
+      headingLevel="h2"
     />
   );
 };

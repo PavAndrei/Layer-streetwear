@@ -19,6 +19,7 @@ export const NewArrivals = async () => {
       linkTo="/new-arrivals"
       products={products}
       quantity={15}
+      headingLevel="h2"
     />
   );
 };

@@ -21,6 +21,7 @@ export const Discounts = async () => {
       linkTo="/discounts"
       products={products}
       quantity={15}
+      headingLevel="h2"
     />
   );
 };

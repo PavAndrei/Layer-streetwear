@@ -1,0 +1,62 @@
+[
+  {
+    "order": 1,
+    "title": "New Arrivals",
+    "img": "/categories/new-arrivals.png"
+  },
+  {
+    "order": 2,
+    "title": "Hoodies",
+    "img": "/categories/hoodies.png"
+  },
+  {
+    "order": 3,
+    "title": "T-Shirts",
+    "img": "/categories/t-shirts.png"
+  },
+  {
+    "order": 4,
+    "title": "Jackets",
+    "img": "/categories/jackets.png"
+  },
+  {
+    "order": 5,
+    "title": "Pants",
+    "img": "/categories/pants.png"
+  },
+  {
+    "order": 6,
+    "title": "Denim",
+    "img": "/categories/denim.png"
+  },
+  {
+    "order": 7,
+    "title": "Sweatshirts",
+    "img": "/categories/sweatshirts.png"
+  },
+  {
+    "order": 8,
+    "title": "Shorts",
+    "img": "/categories/shorts.png"
+  },
+  {
+    "order": 9,
+    "title": "Accessories",
+    "img": "/categories/accessories.png"
+  },
+  {
+    "order": 10,
+    "title": "Bags",
+    "img": "/categories/bags.png"
+  },
+  {
+    "order": 11,
+    "title": "Headwear",
+    "img": "/categories/headwear.png"
+  },
+  {
+    "order": 12,
+    "title": "Discounts",
+    "img": "/categories/discounts.png"
+  }
+]
