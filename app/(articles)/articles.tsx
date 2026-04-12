@@ -15,7 +15,7 @@ export const Articles = async () => {
       title="Articles"
       linkText="Read all articles"
       linkTo="/articles"
-      quantity={12}
+      quantity={15}
       articles={articles}
     />
   );

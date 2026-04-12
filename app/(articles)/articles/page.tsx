@@ -21,22 +21,6 @@ const ArticlesPage = async ({
       contentType="article"
     />
   );
-
-  // try {
-  //   const articles = await fetchArticles();
-
-  //   return (
-  //     <ArticlesSection
-  //       title="Articles"
-  //       linkText="Back"
-  //       linkTo="/"
-  //       quantity={8}
-  //       articles={articles}
-  //     />
-  //   );
-  // } catch {
-  //   return <div className="text-red-500">Error fetching all the articles</div>;
-  // }
 };
 
 export default ArticlesPage;

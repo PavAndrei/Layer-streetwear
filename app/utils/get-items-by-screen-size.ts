@@ -9,5 +9,9 @@ export const getItemsByScreenSize = () => {
     return 3;
   }
 
-  return 4;
+  if (width < 1440) {
+    return 4;
+  }
+
+  return 5;
 };

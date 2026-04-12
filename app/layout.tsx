@@ -4,6 +4,7 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer';
 
 import './globals.css';
+import { Breadcrumbs } from './components/breadcrumbs';
 
 const manrope = Manrope({
   variable: '--font-manrope',
@@ -27,6 +28,7 @@ export default function RootLayout({
         className={`${manrope.variable} font-sans flex flex-col min-h-screen`}
       >
         <Header />
+        <Breadcrumbs />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

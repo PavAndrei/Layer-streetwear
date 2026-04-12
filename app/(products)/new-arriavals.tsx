@@ -18,7 +18,7 @@ export const NewArrivals = async () => {
       linkText="All new arrivals"
       linkTo="/new-arrivals"
       products={products}
-      quantity={12}
+      quantity={15}
     />
   );
 };

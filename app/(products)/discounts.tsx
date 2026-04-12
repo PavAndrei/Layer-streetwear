@@ -20,7 +20,7 @@ export const Discounts = async () => {
       linkText="All discounts"
       linkTo="/discounts"
       products={products}
-      quantity={12}
+      quantity={15}
     />
   );
 };

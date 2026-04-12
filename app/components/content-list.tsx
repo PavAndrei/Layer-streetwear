@@ -43,15 +43,11 @@ export const ContentList = async ({
     contentType === 'product' ? (
       <ProductsSection
         title={title}
-        linkText="Back"
-        linkTo="/"
         products={paginatedItems as ProductCardProps[]}
       />
     ) : (
       <ArticlesSection
         title={title}
-        linkText="Back"
-        linkTo="/"
         articles={paginatedItems as ArticleCardProps[]}
       />
     );

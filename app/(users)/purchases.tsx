@@ -20,7 +20,7 @@ export const Purchases = async () => {
       products={purchases}
       displayDiscount={false}
       displayNewBadge={false}
-      quantity={12}
+      quantity={15}
     />
   );
 };
