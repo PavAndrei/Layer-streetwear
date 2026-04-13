@@ -3,6 +3,7 @@
 import { CategoryCardProps } from '@/app/types/categories';
 import React, { useEffect, useState } from 'react';
 import { CategoryCard } from './category-card';
+import Loading from './categories/loading';
 export const CategoriesGrid = () => {
   const [categories, setCategories] = useState<CategoryCardProps[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -135,11 +136,11 @@ export const CategoriesGrid = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading categories...</div>;
+    return <Loading />;
   }
 
   if (error) {
-    return <div className="text-red-500">{error}</div>;
+    throw error;
   }
 
   if (categories.length === 0) {
@@ -170,7 +171,7 @@ export const CategoriesGrid = () => {
         )}
       </div>
 
-      <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-8">
+      <ul className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-8">
         {categories.map((categoryItem) => (
           <li
             key={categoryItem._id}
