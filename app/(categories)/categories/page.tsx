@@ -1,4 +1,6 @@
-import { CategoriesGrid } from './categories-grid';
+import { CategoriesGrid } from '../categories-grid';
+
+// 50 : 16
 
 export const metadata = {
   title: 'Categories - Layer Streetwear',

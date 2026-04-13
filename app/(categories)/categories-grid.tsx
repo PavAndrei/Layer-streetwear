@@ -2,7 +2,7 @@
 
 import { CategoryCardProps } from '@/app/types/categories';
 import React, { useEffect, useState } from 'react';
-import { CategoryCard } from '../category-card';
+import { CategoryCard } from './category-card';
 export const CategoriesGrid = () => {
   const [categories, setCategories] = useState<CategoryCardProps[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -147,7 +147,7 @@ export const CategoriesGrid = () => {
   }
 
   return (
-    <section className="mt-10 flex flex-col gap-10 max-w-365 px-2.5 mx-auto w-full">
+    <section className="my-10 flex flex-col gap-10 max-w-365 px-2.5 mx-auto w-full">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold ">Categories</h1>
         {isAdmin && (
@@ -170,7 +170,7 @@ export const CategoriesGrid = () => {
         )}
       </div>
 
-      <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8">
+      <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-8">
         {categories.map((categoryItem) => (
           <li
             key={categoryItem._id}

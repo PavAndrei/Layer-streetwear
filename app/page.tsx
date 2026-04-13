@@ -1,4 +1,5 @@
 import { Articles } from './(articles)/articles';
+import { CategoriesSection } from './(categories)/categories-section';
 import { Discounts } from './(products)/discounts';
 import { NewArrivals } from './(products)/new-arriavals';
 import { Purchases } from './(users)/purchases';
@@ -10,10 +11,11 @@ export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
-    <main className="w-full mx-auto mb-20 h-fit flex flex-col gap-20">
+    <main className="w-full mx-auto mb-20 h-fit flex flex-col gap-10">
       <HeroSlider />
       <Discounts />
       <NewArrivals />
+      <CategoriesSection />
       <Purchases />
       <SpecialOffers />
       <Articles />
