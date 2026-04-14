@@ -1,6 +1,10 @@
 export const getItemsByScreenSize = () => {
   const width = window.innerWidth;
 
+  if (width < 640) {
+    return 1;
+  }
+
   if (width < 768) {
     return 2;
   }

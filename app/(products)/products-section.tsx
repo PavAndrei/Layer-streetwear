@@ -9,7 +9,6 @@ export const ProductsSection = ({
   products,
   displayDiscount,
   displayNewBadge,
-  quantity = products.length,
   headingLevel = 'h1',
 }: {
   title: string;
@@ -33,7 +32,7 @@ export const ProductsSection = ({
         {linkTo && linkText && <NavigateLink href={linkTo} text={linkText} />}
       </div>
       <ul className="grid-container">
-        {products.slice(0, quantity).map((product) => (
+        {products.map((product) => (
           <ProductCard
             key={product._id}
             product={product}

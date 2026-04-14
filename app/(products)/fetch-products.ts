@@ -1,11 +1,26 @@
-import { ProductCardProps } from '../types/product';
-
-export const fetchProducts = async (isNew?: boolean, hasDiscount?: boolean) => {
+export const fetchProducts = async (
+  isNew?: boolean,
+  hasDiscount?: boolean,
+  options?: {
+    limit?: number;
+    pagination?: { startIndex: number; perPage: number };
+  },
+) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?isNew=${isNew}&hasDiscount=${hasDiscount}`,
-      { next: { revalidate: 3600 } },
-    );
+    const url = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
+    url.searchParams.append('isNew', isNew ? 'true' : 'false');
+    url.searchParams.append('hasDiscount', hasDiscount ? 'true' : 'false');
+
+    if (options?.limit) {
+      url.searchParams.append('limit', options.limit.toString());
+    } else if (options?.pagination) {
+      url.searchParams.append(
+        'startIndex',
+        options.pagination.startIndex.toString(),
+      );
+      url.searchParams.append('perPage', options.pagination.perPage.toString());
+    }
+    const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
 
     if (!res.ok) {
       throw new Error(
@@ -13,13 +28,12 @@ export const fetchProducts = async (isNew?: boolean, hasDiscount?: boolean) => {
       );
     }
 
-    const products: ProductCardProps[] = await res.json();
+    const data = await res.json();
 
-    const availableProducts = products.filter(
-      (product) => product.quantity > 0,
-    );
-
-    return availableProducts;
+    return {
+      items: data.products || data,
+      totalCount: data.totalCount || data.length,
+    };
   } catch (err) {
     console.log(err);
     throw err;

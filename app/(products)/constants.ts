@@ -1,3 +1,5 @@
 export const PAGINATION = {
-  PRODUCTS_LIMIT: 3,
+  PRODUCTS_LIMIT: 6,
 };
+
+export const PRODUCTS_CARDS_HOME_PAGE_LIMIT = 12;

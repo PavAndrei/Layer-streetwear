@@ -1,4 +1,4 @@
-import { randomizeList } from '../utils/randomize-list';
+import { PRODUCTS_CARDS_HOME_PAGE_LIMIT } from './constants';
 import { fetchProducts } from './fetch-products';
 import { ProductsSection } from './products-section';
 
@@ -6,8 +6,10 @@ export const NewArrivals = async () => {
   let products;
 
   try {
-    products = await fetchProducts(true, false);
-    products = randomizeList(products);
+    const data = await fetchProducts(true, false, {
+      limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
+    });
+    products = data.items;
   } catch {
     return <div className="text-red-500">Error fetching new arrivals</div>;
   }
@@ -18,7 +20,6 @@ export const NewArrivals = async () => {
       linkText="All new arrivals"
       linkTo="/new-arrivals"
       products={products}
-      quantity={15}
       headingLevel="h2"
     />
   );

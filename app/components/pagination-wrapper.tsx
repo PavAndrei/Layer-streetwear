@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { PAGINATION } from '../(products)/constants';
-import { useRouter } from 'next/navigation';
 import { debounce } from '../utils/debounce';
 import { Pagination } from '../(products)/pagination';
 import { getItemsByScreenSize } from '../utils/get-items-by-screen-size';
+
 export const PaginationWrapper = ({
   total,
   currentPage,
@@ -16,9 +16,14 @@ export const PaginationWrapper = ({
   currentPage: number;
   basePath: string;
 }) => {
-  const [limit, setLimit] = useState(PAGINATION.PRODUCTS_LIMIT);
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  const [limit, setLimit] = useState(
+    Number(searchParams.get('limit')) || PAGINATION.PRODUCTS_LIMIT,
+  );
+
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     const updateLimit = () => {
@@ -30,7 +35,10 @@ export const PaginationWrapper = ({
 
       const newSearchParams = new URLSearchParams(searchParams.toString());
       newSearchParams.set('limit', newLimit.toString());
-      newSearchParams.set('page', '1');
+
+      if (!isFirstRender.current) {
+        newSearchParams.set('page', '1');
+      }
 
       router.replace(`${basePath}?${newSearchParams.toString()}`, {
         scroll: false,
@@ -38,6 +46,8 @@ export const PaginationWrapper = ({
     };
 
     updateLimit();
+
+    isFirstRender.current = false;
 
     const handleResize = debounce(updateLimit, 200);
 
@@ -47,14 +57,12 @@ export const PaginationWrapper = ({
   }, [limit, searchParams, basePath, router]);
 
   return (
-    <>
-      <Pagination
-        total={total}
-        limit={limit}
-        currentPage={currentPage}
-        basePath={basePath}
-        searchQueryString={searchParams.toString()}
-      />
-    </>
+    <Pagination
+      total={total}
+      limit={limit}
+      currentPage={currentPage}
+      basePath={basePath}
+      searchQueryString={searchParams.toString()}
+    />
   );
 };
