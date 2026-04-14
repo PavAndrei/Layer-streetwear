@@ -1,0 +1,1 @@
+export const ARTICLES_CARDS_HOME_PAGE_LIMIT = 12;

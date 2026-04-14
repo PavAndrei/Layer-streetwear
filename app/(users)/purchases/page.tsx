@@ -9,7 +9,7 @@ const PurchasesPage = async ({
   return (
     <ContentList
       searchParams={searchParams}
-      fetchData={() => fetchUsersPurchases()}
+      fetchData={({ pagination }) => fetchUsersPurchases({ pagination })}
       title="Purchases"
       basePath="/purchases"
       errorMessage="Error fetching your purchases"

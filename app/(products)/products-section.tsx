@@ -17,7 +17,6 @@ export const ProductsSection = ({
   products: ProductCardProps[];
   displayDiscount?: boolean;
   displayNewBadge?: boolean;
-  quantity?: number;
   headingLevel?: 'h1' | 'h2';
 }) => {
   return (

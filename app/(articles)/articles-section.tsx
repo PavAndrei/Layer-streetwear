@@ -7,14 +7,12 @@ export const ArticlesSection = ({
   linkTo,
   linkText,
   articles,
-  quantity = articles.length,
   headingLevel = 'h1',
 }: {
   title: string;
   linkTo?: string;
   linkText?: string;
   articles: ArticleCardProps[];
-  quantity?: number;
   headingLevel?: 'h1' | 'h2';
 }) => {
   return (
@@ -29,7 +27,7 @@ export const ArticlesSection = ({
         {linkTo && linkText && <NavigateLink href={linkTo} text={linkText} />}
       </div>
       <ul className="grid-container">
-        {articles.slice(0, quantity).map((article) => (
+        {articles.map((article) => (
           <ArticleCard key={article._id} article={article} />
         ))}
       </ul>

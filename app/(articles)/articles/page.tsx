@@ -14,7 +14,7 @@ const ArticlesPage = async ({
   return (
     <ContentList
       searchParams={searchParams}
-      fetchData={() => fetchArticles()}
+      fetchData={({ pagination }) => fetchArticles({ pagination })}
       title="Articles"
       basePath="/articles"
       errorMessage="Error fetching articles"

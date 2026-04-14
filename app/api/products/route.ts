@@ -51,7 +51,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ products, totalCount });
   } catch (error) {
-    console.log(error);
+    console.error(`Server error: ${error}`);
 
     return NextResponse.json(
       { error: 'Failed to fetch products' },

@@ -7,7 +7,7 @@ type ContentSectionSkeletonProps = {
 };
 
 export const ContentSectionSkeleton = ({
-  itemsCount = 8,
+  itemsCount = 12,
   showHeader = true,
   showLink = true,
   cardVariant = 'product',

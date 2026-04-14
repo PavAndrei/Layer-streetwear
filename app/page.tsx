@@ -23,39 +23,19 @@ type HomeSection = {
 };
 
 const productSectionFallback = (
-  <ContentSectionSkeleton
-    itemsCount={5}
-    showHeader
-    showLink
-    cardVariant="product"
-  />
+  <ContentSectionSkeleton showHeader showLink cardVariant="product" />
 );
 
 const purchasesFallback = (
-  <ContentSectionSkeleton
-    itemsCount={5}
-    showHeader
-    showLink={false}
-    cardVariant="product"
-  />
+  <ContentSectionSkeleton showHeader showLink={false} cardVariant="product" />
 );
 
 const categorySectionFallback = (
-  <ContentSectionSkeleton
-    itemsCount={5}
-    showHeader
-    showLink={false}
-    cardVariant="category"
-  />
+  <ContentSectionSkeleton showHeader showLink={false} cardVariant="category" />
 );
 
 const articleSectionFallback = (
-  <ContentSectionSkeleton
-    itemsCount={5}
-    showHeader
-    showLink
-    cardVariant="article"
-  />
+  <ContentSectionSkeleton showHeader showLink cardVariant="article" />
 );
 
 const homeSections: HomeSection[] = [
