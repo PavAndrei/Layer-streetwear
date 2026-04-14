@@ -24,17 +24,9 @@ body {
 .no-ymaps-copyright [class*='copyrights-pane'] {
   visibility: hidden !important;
 }
-/* 
-.embla__viewport {
-  overflow: hidden;
-}
 
-.embla__container {
-  display: flex;
-  touch-action: pan-y pinch-zoom;
+@layer components {
+  .grid-container {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4;
+  }
 }
-
-.embla__slide {
-  flex: 0 0 100%;
-  min-width: 0;
-} */

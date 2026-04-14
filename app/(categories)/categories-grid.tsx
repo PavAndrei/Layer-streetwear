@@ -171,7 +171,7 @@ export const CategoriesGrid = () => {
         )}
       </div>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-8">
+      <ul className="grid-container">
         {categories.map((categoryItem) => (
           <li
             key={categoryItem._id}

@@ -32,7 +32,7 @@ export const ProductsSection = ({
         )}
         {linkTo && linkText && <NavigateLink href={linkTo} text={linkText} />}
       </div>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4">
+      <ul className="grid-container">
         {products.slice(0, quantity).map((product) => (
           <ProductCard
             key={product._id}

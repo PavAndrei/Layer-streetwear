@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import mockArticleImage from '@/public/articles/the-roots-of-streetwear.png';
 import { ArticleCardProps } from '../types/article';
 
 export const ArticleCard = ({
@@ -15,7 +14,7 @@ export const ArticleCard = ({
     >
       <div className="w-full h-78 max-h-88 bg-neutral-800 flex items-center justify-center rounded mb-4">
         <Image
-          src={mockArticleImage}
+          src={article.img}
           alt={article.title}
           fill
           className="rounded max-w-70 max-h-78 object-cover mx-auto mt-2"
