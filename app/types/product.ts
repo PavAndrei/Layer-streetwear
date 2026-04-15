@@ -1,5 +1,5 @@
 export interface ProductCardProps {
-  _id: number;
+  _id: string;
   img: string;
   title: string;
   description: string;
@@ -12,4 +12,10 @@ export interface ProductCardProps {
   hasDiscount?: boolean;
   isNew?: boolean;
   quantity: number;
+}
+
+export interface SearchProduct {
+  _id: string;
+  title: string;
+  categories: string[];
 }

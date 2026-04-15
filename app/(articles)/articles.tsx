@@ -12,8 +12,6 @@ export const Articles = async () => {
     return <div className="text-red-500">Error fetching the articles</div>;
   }
 
-  console.log('articles', articles);
-
   return (
     <ArticlesSection
       title="Articles"

@@ -35,7 +35,7 @@ export const fetchProducts = async (
       totalCount: data.totalCount || data.length,
     };
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 };
