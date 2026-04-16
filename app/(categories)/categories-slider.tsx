@@ -26,7 +26,7 @@ export const CategoriesSlider = ({
           {categories.map((category) => (
             <div
               key={category._id}
-              className="min-w-0 shrink-0 basis-full px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/5 cursor-grab active:cursor-grabbing"
+              className="min-w-0 shrink-0 basis-full px-2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 2xl:basis-1/6 cursor-grab active:cursor-grabbing"
             >
               <div className="relative flex h-full flex-col rounded bg-neutral-800 p-3 text-neutral-50">
                 <div className="relative mb-4 flex h-78 max-h-88 w-full items-center justify-center rounded bg-neutral-800">

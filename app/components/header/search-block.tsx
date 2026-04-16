@@ -72,7 +72,7 @@ export const SearchBlock = () => {
 
     if (query.trim()) {
       router.push(`/search?query=${encodeURIComponent(query)}`);
-      setIsOpen(false);
+      resetSearch();
     }
   };
 

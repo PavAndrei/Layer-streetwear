@@ -2,6 +2,10 @@ import { HeaderUserBlock } from './header-user-block';
 import { LogoBlock } from './logo-block';
 import { SearchBlock } from './search-block';
 
+// 4 : 36
+
+// Создать компонент который будет выводить всплывающее меню категорий
+
 export const Header = () => {
   return (
     <header className="bg-neutral-900 z-50">
