@@ -27,9 +27,9 @@ export const Breadcrumbs = () => {
     <nav className="mt-10 flex flex-col gap-10 max-w-365 px-2.5 mx-auto w-full">
       <ul className="flex items-center gap-4">
         {breadcrumbs.map((breadcrumb, i) => (
-          <li key={i} className="flex items-center gap-2">
+          <li key={i} className="flex items-center gap-2 group">
             <div
-              className={`${breadcrumb.isLast ? 'opacity-50' : 'hover:border-current transition-colors'} capitalize pb-0.5 border-b border-transparent`}
+              className={`${breadcrumb.isLast ? 'opacity-50' : 'group-hover:text-lime-600'} capitalize pb-0.5 transition-colors duration-100 ease-in`}
             >
               {breadcrumb.isLast ? (
                 breadcrumb.label
@@ -37,7 +37,13 @@ export const Breadcrumbs = () => {
                 <Link href={breadcrumb.path}>{breadcrumb.label}</Link>
               )}
             </div>
-            {!breadcrumb.isLast && <ArrowRightIcon h={18} w={18} />}
+            {!breadcrumb.isLast && (
+              <ArrowRightIcon
+                h={18}
+                w={18}
+                className="group-hover:text-lime-600 transition-colors duration-100 ease-in"
+              />
+            )}
           </li>
         ))}
       </ul>
