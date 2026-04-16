@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { BurgerMenuIcon } from '@/app/icons/burger-menu-icon';
 import { SearchIcon } from '@/app/icons/search-icon';
 import { SearchProduct } from '@/app/types/product';
@@ -8,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { HighlightMatches } from './highlight-matches';
 
 export const SearchBlock = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -65,6 +67,15 @@ export const SearchBlock = () => {
     setQuery('');
   };
 
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (query.trim()) {
+      router.push(`/search?query=${encodeURIComponent(query)}`);
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div className="flex items-center gap-5 w-full md:min-w-100 lg:min-w-140 text-neutral-50">
       <Link
@@ -75,17 +86,20 @@ export const SearchBlock = () => {
         <span className="text-md">Search</span>
       </Link>
       <div className="relative w-full" ref={searchRef}>
-        <input
-          type="text"
-          placeholder="Search..."
-          className="placeholder:text-neutral-500 focus:shadow-[0_0_15px_rgba(132,204,22,0.6)] outline outline-lime-600 px-2 py-1 rounded group transition-shadow duration-200 ease-in w-full max-w-full"
-          onFocus={handleInputFocus}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button className="cursor-pointer">
-          <SearchIcon className="absolute top-1.5 right-2 w-5 h-5 stroke-neutral-500" />
-        </button>
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search..."
+            className="placeholder:text-neutral-500 focus:shadow-[0_0_15px_rgba(132,204,22,0.6)] outline outline-lime-600 px-2 py-1 rounded group transition-shadow duration-200 ease-in w-full max-w-full"
+            onFocus={handleInputFocus}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            name="search"
+          />
+          <button className="cursor-pointer" type="submit">
+            <SearchIcon className="absolute top-1.5 right-2 w-5 h-5 stroke-neutral-500" />
+          </button>
+        </form>
         {isOpen && query.length > 1 && (
           <div className="absolute flex flex-col gap-2 top-10 left-0 w-full bg-neutral-800 p-2 rounded outline outline-lime-600 shadow-[0_0_15px_rgba(132,204,22,0.6)] max-h-75 overflow-auto">
             {isLoading ? (
@@ -96,7 +110,7 @@ export const SearchBlock = () => {
                   receivedData.map(({ category, products }, i) => (
                     <div key={i}>
                       <Link
-                        href={`/categories/${category.toString()}`}
+                        href={`/categories/${encodeURIComponent(category)}`}
                         className="flex gap-1 items-center justify-between cursor-pointer group"
                         onClick={() => resetSearch()}
                       >

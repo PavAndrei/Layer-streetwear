@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ProductCardProps } from '../types/product';
 import { StarRating } from '../components/star-rating';
+import Link from 'next/link';
 
 export const ProductCard = ({
   product,
@@ -18,12 +19,14 @@ export const ProductCard = ({
       className={`relative flex flex-col bg-neutral-800 p-3 rounded text-neutral-50 ${className}`}
     >
       <div className="w-full h-78 max-h-88 bg-neutral-800 flex items-center justify-center rounded mb-4">
-        <Image
-          src={product.img}
-          alt={product.title}
-          fill
-          className="rounded max-w-70 max-h-78 object-cover mx-auto mt-2"
-        />
+        <Link href={`/product/${product._id}`}>
+          <Image
+            src={product.img}
+            alt={product.title}
+            fill
+            className="rounded max-w-70 max-h-78 object-cover mx-auto mt-2"
+          />
+        </Link>
       </div>
       <div className="flex items-center justify-between mb-2">
         {!product.hasDiscount ? (
@@ -46,7 +49,12 @@ export const ProductCard = ({
         )}
       </div>
       <div className="flex flex-col gap-1 mb-2">
-        <div className="font-medium text-lg line-clamp-1">{product.title}</div>
+        <Link
+          href={`/product/${product._id}`}
+          className="font-medium text-lg line-clamp-1"
+        >
+          {product.title}
+        </Link>
         <div className="italic line-clamp-3">{product.description}</div>
       </div>
 

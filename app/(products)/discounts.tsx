@@ -16,8 +16,6 @@ export const Discounts = async () => {
     );
   }
 
-  console.log(products);
-
   return (
     <ProductsSection
       title="Discounts"
