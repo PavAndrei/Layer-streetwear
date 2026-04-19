@@ -4,9 +4,14 @@ import { CategoryCardProps } from '@/app/types/categories';
 import React, { useEffect, useState } from 'react';
 import { CategoryCard } from './category-card';
 import Loading from './categories/loading';
+import { ErrorBlock } from '../components/error-block';
 export const CategoriesGrid = () => {
   const [categories, setCategories] = useState<CategoryCardProps[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{
+    error: Error;
+    errorMessage?: string;
+    title?: string;
+  } | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // editing functionality
@@ -49,15 +54,18 @@ export const CategoriesGrid = () => {
 
       const data = await res.json();
     } catch (err) {
-      console.error(`Failed to update categories: ${err}`);
-      setError('Failed to update categories');
+      setError({
+        error: err instanceof Error ? err : new Error(String('Unknown error')),
+        errorMessage: 'Failed to update categories',
+        title: "We couldn't update the categories. Try again later.",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
-  const resetLayout = () => {
-    fetchCategories();
+  const resetLayout = async () => {
+    await fetchCategories();
   };
   const handleDragStart = (category: CategoryCardProps) => {
     if (isEditing) {
@@ -118,14 +126,22 @@ export const CategoriesGrid = () => {
         { next: { revalidate: 3600 } },
       );
 
-      if (!res.ok) throw new Error(`Failed to fetch categories: ${res.status}`);
+      if (!res.ok)
+        setError({
+          error: new Error(String('Failed to fetch categories')),
+          errorMessage: 'Failed to fetch categories',
+          title: "We couldn't fetch the categories. Try again later.",
+        });
 
       const data: CategoryCardProps[] = await res.json();
 
       setCategories(data.sort((a, b) => a.order - b.order));
     } catch (err) {
-      console.error(`Failed to fetch categories: ${err}`);
-      setError('Failed to fetch categories');
+      setError({
+        error: err instanceof Error ? err : new Error(String('Unknown error')),
+        errorMessage: 'Failed to fetch categories',
+        title: "We couldn't fetch the categories. Try again later.",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -140,7 +156,13 @@ export const CategoriesGrid = () => {
   }
 
   if (error) {
-    throw error;
+    return (
+      <ErrorBlock
+        error={error.error}
+        errorMessage={error.errorMessage}
+        title={error.title}
+      />
+    );
   }
 
   if (categories.length === 0) {

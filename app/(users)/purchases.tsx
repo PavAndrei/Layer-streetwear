@@ -1,4 +1,5 @@
 import { ProductsSection } from '../(products)/products-section';
+import { ErrorBlock } from '../components/error-block';
 import { PURCHASES_CARDS_HOME_PAGE_LIMIT } from './constants';
 import { fetchUsersPurchases } from './fetch-users-purchases';
 
@@ -10,9 +11,13 @@ export const Purchases = async () => {
       limit: PURCHASES_CARDS_HOME_PAGE_LIMIT,
     });
     purchases = data.items;
-  } catch {
+  } catch (error) {
     return (
-      <div className="text-red-500">Error fetching your recent purchases</div>
+      <ErrorBlock
+        error={error instanceof Error ? error : new Error(String(error))}
+        title="Unable to load purchases"
+        errorMessage="We couldn't fetch the purchases right now. Please try again."
+      />
     );
   }
 

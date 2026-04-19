@@ -2,6 +2,7 @@ import { NavigateLink } from '../components/navigate-link';
 import { randomizeList } from '../utils/randomize-list';
 import { fetchCategories } from './fetch-categories';
 import { CategoriesSlider } from './categories-slider';
+import { ErrorBlock } from '../components/error-block';
 
 export const CategoriesSection = async () => {
   let categories;
@@ -9,8 +10,14 @@ export const CategoriesSection = async () => {
   try {
     categories = await fetchCategories();
     categories = randomizeList(categories);
-  } catch {
-    return <div className="text-red-500">Error fetching categories</div>;
+  } catch (error) {
+    return (
+      <ErrorBlock
+        title="Unable to load categories"
+        errorMessage="We couldn't fetch the categories right now. Please try again."
+        error={error instanceof Error ? error : new Error(String(error))}
+      />
+    );
   }
 
   return (

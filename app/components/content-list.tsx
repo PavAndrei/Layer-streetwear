@@ -5,6 +5,7 @@ import { ContentItem } from '../types/content';
 import { ArticlesSection } from '../(articles)/articles-section';
 import { ProductCardProps } from '../types/product';
 import { ArticleCardProps } from '../types/article';
+import { ErrorBlock } from './error-block';
 
 type FetchDataResult = {
   items: ContentItem[];
@@ -41,7 +42,7 @@ export const ContentList = async ({
   try {
     data = await fetchData({ pagination: { startIndex, perPage } });
   } catch {
-    return <div className="text-red-500">{errorMessage}</div>;
+    return <ErrorBlock error={new Error(errorMessage)} />;
   }
 
   const totalPages = Math.ceil(data.totalCount / perPage);

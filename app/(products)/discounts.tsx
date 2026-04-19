@@ -1,6 +1,7 @@
 import { fetchProducts } from './fetch-products';
 import { ProductsSection } from './products-section';
 import { PRODUCTS_CARDS_HOME_PAGE_LIMIT } from './constants';
+import { ErrorBlock } from '../components/error-block';
 
 export const Discounts = async () => {
   let products;
@@ -10,9 +11,13 @@ export const Discounts = async () => {
       limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
     });
     products = data.items;
-  } catch {
+  } catch (error) {
     return (
-      <div className="text-red-500">Error fetching discounted products</div>
+      <ErrorBlock
+        error={error instanceof Error ? error : new Error(String(error))}
+        title="Unable to load discounts"
+        errorMessage="We couldn't fetch the discounts right now. Please try again."
+      />
     );
   }
 

@@ -1,3 +1,4 @@
+import { ErrorBlock } from '../components/error-block';
 import { PRODUCTS_CARDS_HOME_PAGE_LIMIT } from './constants';
 import { fetchProducts } from './fetch-products';
 import { ProductsSection } from './products-section';
@@ -10,8 +11,14 @@ export const NewArrivals = async () => {
       limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
     });
     products = data.items;
-  } catch {
-    return <div className="text-red-500">Error fetching new arrivals</div>;
+  } catch (error) {
+    return (
+      <ErrorBlock
+        error={error instanceof Error ? error : new Error(String(error))}
+        title="Unable to load new arrivals"
+        errorMessage="We couldn't fetch new arrivals right now. Please try again."
+      />
+    );
   }
 
   return (

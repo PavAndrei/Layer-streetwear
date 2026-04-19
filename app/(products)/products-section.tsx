@@ -20,7 +20,7 @@ export const ProductsSection = ({
   headingLevel?: 'h1' | 'h2';
 }) => {
   return (
-    <section className="mt-10 flex flex-col gap-10 max-w-365 px-2.5 mx-auto w-full">
+    <section className="my-10 flex flex-col gap-10 max-w-365 px-2.5 mx-auto w-full">
       <div className="flex items-center justify-between">
         {headingLevel === 'h1' && (
           <h1 className="text-xl font-semibold ">{title}</h1>
@@ -31,7 +31,7 @@ export const ProductsSection = ({
         {linkTo && linkText && <NavigateLink href={linkTo} text={linkText} />}
       </div>
       <ul className="grid-container">
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductCard
             key={product._id}
             product={product}

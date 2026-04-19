@@ -7,10 +7,17 @@ import { SearchBlock } from './search-block';
 import Link from 'next/link';
 import { CategoryCardProps } from '@/app/types/categories';
 import { HeaderCategoriesBtn } from './header-categories-btn';
+import { ErrorBlock } from '../error-block';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<{
+    error: Error;
+    errorMessage?: string;
+    title?: string;
+  } | null>(null);
+
   const [categories, setCategories] = useState<CategoryCardProps[]>([]);
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
 
@@ -38,7 +45,12 @@ export const Header = () => {
 
         setCategories(data);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        setError({
+          error:
+            error instanceof Error ? error : new Error(String('Unknown error')),
+          errorMessage: 'Failed to fetch categories',
+          title: 'No available categories. Try again later.',
+        });
       } finally {
         setIsLoading(false);
       }
@@ -88,20 +100,28 @@ export const Header = () => {
           ref={categoriesMenuRef}
         >
           <div className="max-w-365 mx-auto my-0 px-0.5">
-            <ul className="w-full grid grid-cols-2 xl:grid-cols-4 gap-6 bg-neutral-800 p-4 rounded outline outline-lime-600 shadow-[0_0_15px_rgba(132,204,22,0.6)] max-h-75 overflow-auto font-semibold">
-              {isLoading && <li>Loading...</li>}
-              {categories.map((category) => (
-                <li key={category._id}>
-                  <Link
-                    href={`/categories/${category._id}`}
-                    className="text-neutral-50 hover:text-lime-600 transition-colors duration-100 ease-in"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {category.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {error ? (
+              <ErrorBlock
+                error={error.error}
+                errorMessage={error.errorMessage}
+                title={error.title}
+              />
+            ) : (
+              <ul className="w-full grid grid-cols-2 xl:grid-cols-4 gap-6 bg-neutral-800 p-4 rounded outline outline-lime-600 shadow-[0_0_15px_rgba(132,204,22,0.6)] max-h-75 overflow-auto font-semibold">
+                {isLoading && <li>Loading...</li>}
+                {categories?.map((category) => (
+                  <li key={category._id}>
+                    <Link
+                      href={`/categories/${category._id}`}
+                      className="text-neutral-50 hover:text-lime-600 transition-colors duration-100 ease-in"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {category.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       )}

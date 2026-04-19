@@ -19,6 +19,8 @@ export const SearchBlock = ({
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [receivedData, setReceivedData] = useState<
     {
       category: string;
@@ -27,6 +29,7 @@ export const SearchBlock = ({
   >([]);
 
   const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -45,12 +48,13 @@ export const SearchBlock = ({
       if (query.length > 1) {
         try {
           setIsLoading(true);
-          const res = await fetch(`api/search?query=${query}`);
+          const res = await fetch(`api/search1?query=${query}`);
           const data = await res.json();
           console.log(data);
           setReceivedData(data);
         } catch (error) {
           console.error('Error fetching search data:', error);
+          setErrorMessage('Error fetching search data');
         } finally {
           setIsLoading(false);
         }
@@ -97,6 +101,7 @@ export const SearchBlock = ({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           name="search"
+          ref={inputRef}
         />
         <button className="cursor-pointer" type="submit">
           <SearchIcon className="absolute top-1.5 right-2 w-5 h-5 stroke-neutral-500" />
@@ -104,6 +109,21 @@ export const SearchBlock = ({
       </form>
       {isOpen && query.length > 1 && (
         <div className="absolute flex flex-col gap-2 top-10 left-0 w-full bg-neutral-800 p-2 rounded outline outline-lime-600 shadow-[0_0_15px_rgba(132,204,22,0.6)] max-h-75 overflow-auto">
+          {errorMessage && (
+            <div className="flex justify-between items-center gap-2">
+              <div className="text-sm text-neutral-500">{errorMessage}</div>
+              <button
+                className="bg-lime-600 rounded px-2 py-1 hover:bg-lime-500 transition-all duration-100 ease-in cursor-pointer flex items-center justify-center font-medium text-neutral-50 my-0 active:scale-95"
+                onClick={() => {
+                  setErrorMessage('');
+                  setQuery('');
+                  inputRef.current?.focus();
+                }}
+              >
+                Try again
+              </button>
+            </div>
+          )}
           {isLoading ? (
             <div className="text-sm">Loading...</div>
           ) : (
@@ -146,7 +166,7 @@ export const SearchBlock = ({
                     </ul>
                   </div>
                 ))}
-              {receivedData.length === 0 && (
+              {receivedData.length === 0 && !isLoading && !errorMessage && (
                 <div className="text-neutral-500">No results found.</div>
               )}
             </>

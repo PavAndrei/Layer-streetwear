@@ -30,7 +30,6 @@ export const fetchUsersPurchases = async (options?: {
       totalCount: typeof data?.totalCount === 'number' ? data.totalCount : 0,
     };
   } catch (err) {
-    console.error(`Error in fetchUsersPurchases: ${err}`);
     throw err;
   }
 };
