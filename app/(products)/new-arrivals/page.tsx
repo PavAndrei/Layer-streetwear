@@ -1,5 +1,7 @@
 import { fetchProducts } from '../fetch-products';
 import { ContentList } from '../../components/content-list';
+import { Suspense } from 'react';
+import { ContentSectionSkeleton } from '@/app/components/skeleton/content-section-skeleton';
 
 export const metadata = {
   title: 'New Arrivals - Layer Streetwear',
@@ -11,13 +13,21 @@ const NewArrivalsPage = async ({
   searchParams: Promise<{ page?: string; limit?: string }>;
 }) => {
   return (
-    <ContentList
-      searchParams={searchParams}
-      fetchData={({ pagination }) => fetchProducts(true, false, { pagination })}
-      title="New Arrivals"
-      basePath="/new-arrivals"
-      errorMessage="Error fetching new arrivals"
-    />
+    <Suspense
+      fallback={
+        <ContentSectionSkeleton showLink={false} cardVariant="product" />
+      }
+    >
+      <ContentList
+        searchParams={searchParams}
+        fetchData={({ pagination }) =>
+          fetchProducts(true, false, { pagination })
+        }
+        title="New Arrivals"
+        basePath="/new-arrivals"
+        errorMessage="Error fetching new arrivals"
+      />
+    </Suspense>
   );
 };
 
