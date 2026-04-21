@@ -35,7 +35,7 @@ const CategoryPage = async ({
         contentType="product"
         searchParams={searchParams}
         fetchData={({ pagination }) =>
-          fetchProducts(undefined, undefined, category, { pagination })
+          fetchProducts({ category, includeOutOfStock: true }, { pagination })
         }
         title={category}
         basePath={`/categories/${category}`}

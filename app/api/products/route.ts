@@ -17,15 +17,20 @@ export async function GET(request: Request) {
     const hasDiscount = searchParams.get('hasDiscount');
     const isNew = searchParams.get('isNew');
     const category = searchParams.get('category');
+    const includeOutOfStock = searchParams.get('includeOutOfStock');
     const limit = searchParams.get('limit');
     const startIndex = parseInt(searchParams.get('startIndex') || '0');
     const perPage = parseInt(
       searchParams.get('perPage') || PRODUCTS_CARDS_HOME_PAGE_LIMIT.toString(),
     );
 
-    const query: Record<string, unknown> = {
-      quantity: { $gt: 0 },
-    };
+    const shouldIncludeOutOfStock = includeOutOfStock === 'true';
+
+    const query: Record<string, unknown> = {};
+
+    if (!shouldIncludeOutOfStock) {
+      query.quantity = { $gt: 0 };
+    }
 
     if (hasDiscount !== null) {
       query.hasDiscount = hasDiscount === 'true';

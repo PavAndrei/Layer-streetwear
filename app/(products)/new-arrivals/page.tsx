@@ -21,11 +21,12 @@ const NewArrivalsPage = async ({
       <ContentList
         searchParams={searchParams}
         fetchData={({ pagination }) =>
-          fetchProducts(false, true, undefined, { pagination })
+          fetchProducts({ isNew: true }, { pagination })
         }
         title="New Arrivals"
         basePath="/new-arrivals"
         errorMessage="Error fetching new arrivals"
+        contentType="product"
       />
     </Suspense>
   );

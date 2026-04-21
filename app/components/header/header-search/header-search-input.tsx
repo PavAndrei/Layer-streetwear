@@ -30,6 +30,7 @@ export const HeaderSearchInput = ({
         onChange={(e) => setQuery(e.target.value)}
         name="search"
         ref={inputRef}
+        autoComplete="off"
       />
       <button className="cursor-pointer" type="submit">
         <SearchIcon className="absolute top-1.5 right-2 w-5 h-5 stroke-neutral-500" />

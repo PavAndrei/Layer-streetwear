@@ -4,6 +4,8 @@ import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { CategoryCardProps } from '../types/categories';
 import { ArrowRightIcon } from '../icons/arrow-right-icon';
+import Link from 'next/link';
+import { useEffect } from 'react';
 
 export const CategoriesSlider = ({
   categories,
@@ -34,7 +36,7 @@ export const CategoriesSlider = ({
                     src={category.img}
                     alt={category.title}
                     fill
-                    className="rounded object-cover"
+                    className="rounded object-center max-w-66.25 max-h-78"
                   />
                 </div>
 
@@ -42,12 +44,12 @@ export const CategoriesSlider = ({
                   {category.title}
                 </div>
 
-                <button
-                  aria-label={`View ${category.title} category`}
+                <Link
+                  href={`/categories/${category.slug}`}
                   className="mt-auto flex cursor-pointer items-center justify-center rounded bg-lime-600 px-2 py-1 font-medium text-neutral-50 transition-all duration-100 ease-in hover:bg-lime-500 active:scale-95"
                 >
                   View Category
-                </button>
+                </Link>
               </div>
             </div>
           ))}

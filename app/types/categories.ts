@@ -3,4 +3,5 @@ export interface CategoryCardProps {
   order: number;
   title: string;
   img: string;
+  slug: string;
 }

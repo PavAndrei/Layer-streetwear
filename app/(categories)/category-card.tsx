@@ -36,7 +36,7 @@ export const CategoryCard = ({
         onDragStart={() => handleDragStart(categoryItem)}
       >
         <Link
-          href={`/categories/${categoryItem.title.toLowerCase().replace(/\s/g, '-')}`}
+          href={`/categories/${categoryItem.slug}`}
           className="block h-full relative"
         >
           <span className="absolute bottom-3 left-3 z-500 capitalize font-medium text-2xl">
@@ -46,7 +46,7 @@ export const CategoryCard = ({
             src={categoryItem.img}
             alt={categoryItem.title}
             fill
-            className="object-cover opacity-70"
+            className="object-contain opacity-70"
           />
         </Link>
       </div>

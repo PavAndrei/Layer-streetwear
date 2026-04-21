@@ -6,6 +6,7 @@ import { ArticlesSection } from '../(articles)/articles-section';
 import { ProductCardProps } from '../types/product';
 import { ArticleCardProps } from '../types/article';
 import { ErrorBlock } from './error-block';
+import { Suspense } from 'react';
 
 type FetchDataResult = {
   items: ContentItem[];
@@ -64,11 +65,13 @@ export const ContentList = async ({
     <>
       {content}
       {totalPages > 1 && (
-        <PaginationWrapper
-          total={data.totalCount}
-          currentPage={currentPage}
-          basePath={basePath}
-        />
+        <Suspense fallback={null}>
+          <PaginationWrapper
+            total={data.totalCount}
+            currentPage={currentPage}
+            basePath={basePath}
+          />
+        </Suspense>
       )}
     </>
   );

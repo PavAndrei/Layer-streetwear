@@ -7,9 +7,12 @@ export const Discounts = async () => {
   let products;
 
   try {
-    const data = await fetchProducts(false, true, undefined, {
-      limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
-    });
+    const data = await fetchProducts(
+      { hasDiscount: true },
+      {
+        limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
+      },
+    );
     products = data.items;
   } catch (error) {
     return (
@@ -28,6 +31,7 @@ export const Discounts = async () => {
       linkTo="/discounts"
       products={products}
       headingLevel="h2"
+      displayDiscount
     />
   );
 };

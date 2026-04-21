@@ -22,11 +22,12 @@ const DiscountsPage = async ({
       <ContentList
         searchParams={searchParams}
         fetchData={({ pagination }) =>
-          fetchProducts(false, true, undefined, { pagination })
+          fetchProducts({ hasDiscount: true }, { pagination })
         }
         title="Discounts"
         basePath="/discounts"
         errorMessage="Error fetching discounted products"
+        contentType="product"
       />
     </Suspense>
   );

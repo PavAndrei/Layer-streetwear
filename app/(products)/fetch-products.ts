@@ -1,25 +1,42 @@
+type FetchProductsFilters = {
+  isNew?: boolean;
+  hasDiscount?: boolean;
+  category?: string;
+  includeOutOfStock?: boolean;
+};
+
+type FetchProductsOptions = {
+  limit?: number;
+  pagination?: {
+    startIndex: number;
+    perPage: number;
+  };
+};
+
 export const fetchProducts = async (
-  isNew?: boolean,
-  hasDiscount?: boolean,
-  category?: string,
-  options?: {
-    limit?: number;
-    pagination?: { startIndex: number; perPage: number };
-  },
+  filters?: FetchProductsFilters,
+  options?: FetchProductsOptions,
 ) => {
   try {
     const url = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
 
-    if (typeof isNew === 'boolean') {
-      url.searchParams.append('isNew', isNew.toString());
+    if (filters?.isNew !== undefined) {
+      url.searchParams.append('isNew', filters.isNew.toString());
     }
 
-    if (typeof hasDiscount === 'boolean') {
-      url.searchParams.append('hasDiscount', hasDiscount.toString());
+    if (filters?.hasDiscount !== undefined) {
+      url.searchParams.append('hasDiscount', filters.hasDiscount.toString());
     }
 
-    if (category) {
-      url.searchParams.append('category', category);
+    if (filters?.category) {
+      url.searchParams.append('category', filters.category);
+    }
+
+    if (filters?.includeOutOfStock !== undefined) {
+      url.searchParams.append(
+        'includeOutOfStock',
+        filters.includeOutOfStock.toString(),
+      );
     }
 
     if (options?.limit) {
@@ -35,9 +52,7 @@ export const fetchProducts = async (
     const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
 
     if (!res.ok) {
-      throw new Error(
-        `Failed to fetch products${category ? ` in category ${category}` : ''}`,
-      );
+      throw new Error('Failed to fetch products');
     }
 
     const data = await res.json();
