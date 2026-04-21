@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { SearchProduct } from '@/app/types/product';
 import { useEffect, useRef, useState } from 'react';
 import { HeaderSearchInput } from './header-search-input';
@@ -15,6 +15,9 @@ export const HeaderSearch = ({
   onBlurFunction: () => void;
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -43,13 +46,30 @@ export const HeaderSearch = ({
   }, []);
 
   useEffect(() => {
+    if (pathname !== '/search') return;
+
+    const timeout = setTimeout(() => {
+      const currentUrlQuery = searchParams.get('query') || '';
+
+      if (currentUrlQuery === query) return;
+
+      router.replace(`/search?query=${encodeURIComponent(query)}`, {
+        scroll: false,
+      });
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [query, pathname, router, searchParams]);
+
+  useEffect(() => {
     const fetchSearchData = async () => {
       if (query.length > 1) {
         try {
           setIsLoading(true);
-          const res = await fetch(`api/search?query=${query}`);
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/search?query=${query}`,
+          );
           const data = await res.json();
-          console.log(data);
           setReceivedData(data);
         } catch (error) {
           console.error('Error fetching search data:', error);
@@ -73,7 +93,6 @@ export const HeaderSearch = ({
 
   const resetSearch = () => {
     setIsOpen(false);
-    setQuery('');
   };
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {

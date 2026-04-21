@@ -26,8 +26,6 @@ export const HeaderSearchOutput = ({
     return <div className="text-sm">No results found</div>;
   }
 
-  // 36:41
-
   return (
     <>
       {data.map(({ category, products }, i) => (

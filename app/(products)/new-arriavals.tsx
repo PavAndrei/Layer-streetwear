@@ -7,7 +7,7 @@ export const NewArrivals = async () => {
   let products;
 
   try {
-    const data = await fetchProducts(true, false, {
+    const data = await fetchProducts(true, false, undefined, {
       limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
     });
     products = data.items;

@@ -64,7 +64,7 @@ export const HeaderDropdownMenu = ({
                 {categories?.map((category) => (
                   <li key={category._id}>
                     <Link
-                      href={`/categories/${category._id}`}
+                      href={`/categories/${category.title}`}
                       className="text-neutral-50 hover:text-lime-600 transition-colors duration-100 ease-in"
                       onClick={() => setIsOpen(false)}
                     >

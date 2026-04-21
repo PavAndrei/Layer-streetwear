@@ -22,7 +22,7 @@ const DiscountsPage = async ({
       <ContentList
         searchParams={searchParams}
         fetchData={({ pagination }) =>
-          fetchProducts(false, true, { pagination })
+          fetchProducts(false, true, undefined, { pagination })
         }
         title="Discounts"
         basePath="/discounts"

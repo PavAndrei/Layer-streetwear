@@ -21,7 +21,7 @@ const NewArrivalsPage = async ({
       <ContentList
         searchParams={searchParams}
         fetchData={({ pagination }) =>
-          fetchProducts(true, false, { pagination })
+          fetchProducts(false, true, undefined, { pagination })
         }
         title="New Arrivals"
         basePath="/new-arrivals"

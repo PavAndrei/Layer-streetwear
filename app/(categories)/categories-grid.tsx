@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { CategoryCard } from './category-card';
 import Loading from './categories/loading';
 import { ErrorBlock } from '../components/error-block';
+import { CategoriesControls } from './categories-controls';
 export const CategoriesGrid = () => {
   const [categories, setCategories] = useState<CategoryCardProps[]>([]);
   const [error, setError] = useState<{
@@ -174,50 +175,27 @@ export const CategoriesGrid = () => {
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold ">Categories</h1>
         {isAdmin && (
-          <div className="flex items-center gap-4">
-            <button
-              className="bg-lime-600 rounded px-2 py-1 hover:bg-lime-500 cursor-pointer transition-all duration-100 ease-in text-neutral-50 sm:max-w-50 text-center mt-auto mb-2 active:scale-95"
-              onClick={() => toggleEditing()}
-            >
-              {isEditing ? 'Apply changes' : 'Change categories order'}
-            </button>
-            {isEditing && (
-              <button
-                className="bg-lime-600 rounded px-2 py-1 hover:bg-lime-500 cursor-pointer transition-all duration-100 ease-in text-neutral-50 sm:max-w-50 text-center mt-auto mb-2 active:scale-95"
-                onClick={resetLayout}
-              >
-                Reset
-              </button>
-            )}
-          </div>
+          <CategoriesControls
+            isEditing={isEditing}
+            resetLayout={resetLayout}
+            toggleEditing={toggleEditing}
+          />
         )}
       </div>
 
       <ul className="grid-container">
         {categories.map((categoryItem) => (
-          <li
+          <CategoryCard
             key={categoryItem._id}
-            className={`bg-neutral-800 rounded p-3 text-neutral-50 min-h-80 ${isEditing && 'border border-dashed border-lime-600'} ${
-              hoveredCategoryId === categoryItem._id
-                ? 'shadow-[0_0_15px_rgba(132,204,22,0.6)]'
-                : ''
-            }`}
-            onDragOver={(e) => handleDragOver(e, categoryItem._id)}
-            onDragLeave={handleDragLeave}
-            onDrop={(e) => handleDrop(e, categoryItem._id)}
-          >
-            <div
-              className={`w-full h-full transition-opacity duration-100 ease-in ${categoryItem._id === draggedCategory?._id && 'opacity-50'}`}
-              draggable
-              onDragStart={() => handleDragStart(categoryItem)}
-            >
-              <CategoryCard
-                _id={categoryItem._id}
-                title={categoryItem.title}
-                img={categoryItem.img}
-              />
-            </div>
-          </li>
+            categoryItem={categoryItem}
+            isEditing={isEditing}
+            isHovered={hoveredCategoryId === categoryItem._id}
+            isDragged={categoryItem._id === draggedCategory?._id}
+            handleDragOver={handleDragOver}
+            handleDragLeave={handleDragLeave}
+            handleDrop={handleDrop}
+            handleDragStart={handleDragStart}
+          />
         ))}
       </ul>
     </section>

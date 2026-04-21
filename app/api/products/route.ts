@@ -1,10 +1,13 @@
 import { PRODUCTS_CARDS_HOME_PAGE_LIMIT } from '@/app/(products)/constants';
 import { getDB } from '@/app/utils/api-routes';
 import { NextResponse } from 'next/server';
-import { parse } from 'path';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
+
+const escapeRegex = (value: string) => {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
 
 export async function GET(request: Request) {
   try {
@@ -13,13 +16,14 @@ export async function GET(request: Request) {
 
     const hasDiscount = searchParams.get('hasDiscount');
     const isNew = searchParams.get('isNew');
+    const category = searchParams.get('category');
     const limit = searchParams.get('limit');
     const startIndex = parseInt(searchParams.get('startIndex') || '0');
     const perPage = parseInt(
       searchParams.get('perPage') || PRODUCTS_CARDS_HOME_PAGE_LIMIT.toString(),
     );
 
-    const query: Record<string, boolean | { $gt: number }> = {
+    const query: Record<string, unknown> = {
       quantity: { $gt: 0 },
     };
 
@@ -29,6 +33,14 @@ export async function GET(request: Request) {
 
     if (isNew !== null) {
       query.isNew = isNew === 'true';
+    }
+
+    if (category) {
+      const normalizedCategory = decodeURIComponent(category).trim();
+      query.categories = new RegExp(
+        `^${escapeRegex(normalizedCategory)}$`,
+        'i',
+      );
     }
 
     if (limit) {
@@ -41,6 +53,7 @@ export async function GET(request: Request) {
     }
 
     const totalCount = await db.collection('products').countDocuments(query);
+
     const products = await db
       .collection('products')
       .find(query)
