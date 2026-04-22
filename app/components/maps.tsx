@@ -40,7 +40,7 @@ export const Maps = () => {
                 className={`px-3 py-1 rounded text-neutral-50 transition cursor-pointer active:scale-95
                   ${
                     key === currentLocation
-                      ? 'bg-lime-600 scale-105'
+                      ? 'bg-lime-600 hover:bg-lime-500 scale-105'
                       : 'bg-neutral-800 hover:bg-neutral-700'
                   }
                 `}

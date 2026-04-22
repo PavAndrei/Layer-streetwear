@@ -1,4 +1,4 @@
-import { fetchProducts } from '../fetch-products';
+import { fetchDiscountedProducts } from '../fetch-products';
 import { ContentList } from '../../components/content-list';
 import { Suspense } from 'react';
 import { ContentSectionSkeleton } from '@/app/components/skeleton/content-section-skeleton';
@@ -21,9 +21,7 @@ const DiscountsPage = async ({
     >
       <ContentList
         searchParams={searchParams}
-        fetchData={({ pagination }) =>
-          fetchProducts({ hasDiscount: true }, { pagination })
-        }
+        fetchData={({ pagination }) => fetchDiscountedProducts({ pagination })}
         title="Discounts"
         basePath="/discounts"
         errorMessage="Error fetching discounted products"

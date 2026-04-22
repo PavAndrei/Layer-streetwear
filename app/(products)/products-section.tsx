@@ -23,10 +23,10 @@ export const ProductsSection = ({
     <section className="my-10 flex flex-col gap-10 max-w-365 px-2.5 mx-auto w-full">
       <div className="flex items-center justify-between">
         {headingLevel === 'h1' && (
-          <h1 className="text-xl font-semibold ">{title}</h1>
+          <h1 className="text-xl font-semibold capitalize">{title}</h1>
         )}
         {headingLevel === 'h2' && (
-          <h2 className="text-xl font-semibold ">{title}</h2>
+          <h2 className="text-xl font-semibold capitalize">{title}</h2>
         )}
         {linkTo && linkText && <NavigateLink href={linkTo} text={linkText} />}
       </div>

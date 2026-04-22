@@ -1,7 +1,8 @@
 type FetchProductsFilters = {
-  isNew?: boolean;
-  hasDiscount?: boolean;
   category?: string;
+  hasDiscount?: boolean;
+  isNew?: boolean;
+  trending?: boolean;
   includeOutOfStock?: boolean;
 };
 
@@ -11,6 +12,15 @@ type FetchProductsOptions = {
     startIndex: number;
     perPage: number;
   };
+  matchMode?: 'all' | 'any';
+};
+
+type FetchCategoryProductsFilters = {
+  category: string;
+  inStock?: boolean;
+  hasDiscount?: boolean;
+  isNew?: boolean;
+  trending?: boolean;
 };
 
 export const fetchProducts = async (
@@ -28,6 +38,10 @@ export const fetchProducts = async (
       url.searchParams.append('hasDiscount', filters.hasDiscount.toString());
     }
 
+    if (filters?.trending !== undefined) {
+      url.searchParams.append('trending', filters.trending.toString());
+    }
+
     if (filters?.category) {
       url.searchParams.append('category', filters.category);
     }
@@ -37,6 +51,10 @@ export const fetchProducts = async (
         'includeOutOfStock',
         filters.includeOutOfStock.toString(),
       );
+    }
+
+    if (options?.matchMode) {
+      url.searchParams.append('matchMode', options.matchMode);
     }
 
     if (options?.limit) {
@@ -49,7 +67,9 @@ export const fetchProducts = async (
       url.searchParams.append('perPage', options.pagination.perPage.toString());
     }
 
-    const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
+    const res = await fetch(url.toString(), {
+      next: { revalidate: 3600 },
+    });
 
     if (!res.ok) {
       throw new Error('Failed to fetch products');
@@ -61,7 +81,56 @@ export const fetchProducts = async (
       items: data.products || data,
       totalCount: data.totalCount || data.length,
     };
-  } catch (err) {
-    throw err;
+  } catch (error) {
+    throw error;
   }
+};
+
+export const fetchDiscountedProducts = async (
+  options?: Omit<FetchProductsOptions, 'matchMode'>,
+) => {
+  return fetchProducts(
+    {
+      hasDiscount: true,
+      includeOutOfStock: true,
+    },
+    {
+      ...options,
+      matchMode: 'all',
+    },
+  );
+};
+
+export const fetchNewArrivalProducts = async (
+  options?: Omit<FetchProductsOptions, 'matchMode'>,
+) => {
+  return fetchProducts(
+    {
+      isNew: true,
+      includeOutOfStock: true,
+    },
+    {
+      ...options,
+      matchMode: 'all',
+    },
+  );
+};
+
+export const fetchCategoryProducts = async (
+  filters: FetchCategoryProductsFilters,
+  options?: Omit<FetchProductsOptions, 'matchMode'>,
+) => {
+  return fetchProducts(
+    {
+      category: filters.category,
+      hasDiscount: filters.hasDiscount,
+      isNew: filters.isNew,
+      trending: filters.trending,
+      includeOutOfStock: filters.inStock === true ? false : true,
+    },
+    {
+      ...options,
+      matchMode: 'any',
+    },
+  );
 };

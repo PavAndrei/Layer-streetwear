@@ -1,4 +1,4 @@
-import { fetchProducts } from '../fetch-products';
+import { fetchNewArrivalProducts } from '../fetch-products';
 import { ContentList } from '../../components/content-list';
 import { Suspense } from 'react';
 import { ContentSectionSkeleton } from '@/app/components/skeleton/content-section-skeleton';
@@ -20,9 +20,7 @@ const NewArrivalsPage = async ({
     >
       <ContentList
         searchParams={searchParams}
-        fetchData={({ pagination }) =>
-          fetchProducts({ isNew: true }, { pagination })
-        }
+        fetchData={({ pagination }) => fetchNewArrivalProducts({ pagination })}
         title="New Arrivals"
         basePath="/new-arrivals"
         errorMessage="Error fetching new arrivals"

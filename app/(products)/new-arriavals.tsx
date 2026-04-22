@@ -1,18 +1,15 @@
 import { ErrorBlock } from '../components/error-block';
 import { PRODUCTS_CARDS_HOME_PAGE_LIMIT } from './constants';
-import { fetchProducts } from './fetch-products';
+import { fetchNewArrivalProducts } from './fetch-products';
 import { ProductsSection } from './products-section';
 
 export const NewArrivals = async () => {
   let products;
 
   try {
-    const data = await fetchProducts(
-      { isNew: true },
-      {
-        limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
-      },
-    );
+    const data = await fetchNewArrivalProducts({
+      limit: PRODUCTS_CARDS_HOME_PAGE_LIMIT,
+    });
     products = data.items;
   } catch (error) {
     return (

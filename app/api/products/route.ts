@@ -5,6 +5,8 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
 
+const TRENDING_RATING_THRESHOLD = 4.7;
+
 const escapeRegex = (value: string) => {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
@@ -16,8 +18,10 @@ export async function GET(request: Request) {
 
     const hasDiscount = searchParams.get('hasDiscount');
     const isNew = searchParams.get('isNew');
+    const trending = searchParams.get('trending');
     const category = searchParams.get('category');
     const includeOutOfStock = searchParams.get('includeOutOfStock');
+    const matchMode = searchParams.get('matchMode') ?? 'all';
     const limit = searchParams.get('limit');
     const startIndex = parseInt(searchParams.get('startIndex') || '0');
     const perPage = parseInt(
@@ -27,17 +31,10 @@ export async function GET(request: Request) {
     const shouldIncludeOutOfStock = includeOutOfStock === 'true';
 
     const query: Record<string, unknown> = {};
+    const statusFilters: Record<string, unknown>[] = [];
 
     if (!shouldIncludeOutOfStock) {
       query.quantity = { $gt: 0 };
-    }
-
-    if (hasDiscount !== null) {
-      query.hasDiscount = hasDiscount === 'true';
-    }
-
-    if (isNew !== null) {
-      query.isNew = isNew === 'true';
     }
 
     if (category) {
@@ -46,6 +43,26 @@ export async function GET(request: Request) {
         `^${escapeRegex(normalizedCategory)}$`,
         'i',
       );
+    }
+
+    if (hasDiscount === 'true') {
+      statusFilters.push({ hasDiscount: true });
+    }
+
+    if (isNew === 'true') {
+      statusFilters.push({ isNew: true });
+    }
+
+    if (trending === 'true') {
+      statusFilters.push({ rating: { $gte: TRENDING_RATING_THRESHOLD } });
+    }
+
+    if (statusFilters.length > 0) {
+      if (matchMode === 'any') {
+        query.$or = statusFilters;
+      } else {
+        Object.assign(query, ...statusFilters);
+      }
     }
 
     if (limit) {
